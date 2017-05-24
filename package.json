@@ -1,6 +1,6 @@
 {
   "name": "cerebro-files-nav",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cerebro plugin for file system navigation with previews",
   "license": "MIT",
   "repository": "KELiON/cerebro-files-nav",

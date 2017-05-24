@@ -18,7 +18,11 @@ module.exports = {
     ]
   },
   target: 'electron-renderer',
-  externals: ['react', 'react-dom', 'nodobjc'],
+  externals: {
+    'nodobjc': 'nodobjc',
+    'react': 'global React',
+    'react-dom': 'global ReactDOM',
+  },
   module: {
     rules: [{
       test: /\.jsx?$/,
@@ -44,11 +48,5 @@ module.exports = {
         loader: 'url-loader'
       }
     }]
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      'window.React': 'react',
-      'window.ReactDOM': 'react-dom'
-    })
-  ]
+  }
 };
