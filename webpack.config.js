@@ -17,12 +17,6 @@ module.exports = {
       path.resolve('./node_modules'),
     ]
   },
-  externals: {
-    // To minimize plugin size Cerebro writes react and react-dom to global variables
-    // so it can be used in plugin code as external
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
   target: 'electron-renderer',
   module: {
     rules: [{
@@ -49,5 +43,11 @@ module.exports = {
         loader: 'url-loader'
       }
     }]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      'window.React': 'react',
+      'window.ReactDOM': 'react-dom'
+    })
+  ]
 };
