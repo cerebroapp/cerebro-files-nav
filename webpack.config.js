@@ -18,6 +18,7 @@ module.exports = {
     ]
   },
   target: 'electron-renderer',
+  externals: ['react', 'react-dom', 'nodobjc'],
   module: {
     rules: [{
       test: /\.jsx?$/,

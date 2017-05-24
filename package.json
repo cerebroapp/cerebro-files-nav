@@ -1,6 +1,6 @@
 {
   "name": "cerebro-files-nav",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cerebro plugin for file system navigation with previews",
   "license": "MIT",
   "repository": "KELiON/cerebro-files-nav",
@@ -32,7 +32,7 @@
     "babel-plugin-transform-es2015-classes": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
-    "babili": "0.0.9",
+    "babili": "^0.1.2",
     "chai": "^3.5.0",
     "css-loader": "^0.26.0",
     "mocha": "^3.3.0",
@@ -47,8 +47,6 @@
     "du": "0.1.0",
     "pdfjs-dist": "1.5.355",
     "prismjs": "1.6.0",
-    "react": "15.4.2",
-    "react-dom": "15.4.2",
     "react-markdown": "2.4.2"
   }
 }
