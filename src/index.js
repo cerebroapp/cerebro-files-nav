@@ -4,9 +4,9 @@ import Preview from './Preview'
 import readDir from './lib/readDir'
 import { search } from 'cerebro-tools'
 
-const DIR_REGEXP = /^\/(.*\/)*(.*)/
+const DIR_REGEXP = /^([a-z]:)?[\\/](.*[\\/])*(.*)/i
 const HOME_DIR_REGEXP = /^~/
-const USER_PATH = os.homedir()
+const USER_PATH = os.homedir().trim('/').trim('\\')
 
 /**
  * Do not show some files in results, i.e. system files
@@ -32,8 +32,9 @@ const filesPlugin = ({ term, actions, display }) => {
   }
   const match = path.match(DIR_REGEXP)
   if (match) {
-    const dir = match[1] ? `/${match[1]}` : '/'
-    const fileName = match[2]
+    const windowsDrive = match[1] || ''
+    const dir = windowsDrive + (match[2] ? `/${match[2]}` : '/')
+    const fileName = match[3]
     readDir(dir).then(files =>
       fileName ? search(files, fileName) : files
     ).then(files => {
@@ -41,7 +42,7 @@ const filesPlugin = ({ term, actions, display }) => {
       files.forEach(file => {
         if (ignoreFile(file)) return
         const filePath = [dir, file].join('')
-        const autocomplete = replaceHomePath ? filePath.replace(USER_PATH, '~') : filePath
+        const autocomplete = replaceHomePath ? '~' + filePath.substr(USER_PATH.length) : filePath
         result.push({
           id: filePath,
           title: file,
