@@ -1,5 +1,6 @@
 import React from 'react'
 import os from 'os'
+import fs from 'fs'
 import Preview from './Preview'
 import readDir from './lib/readDir'
 import { search } from 'cerebro-tools'
@@ -42,7 +43,10 @@ const filesPlugin = ({ term, actions, display }) => {
       files.forEach(file => {
         if (ignoreFile(file)) return
         const filePath = [dir, file].join('')
-        const autocomplete = replaceHomePath ? '~' + filePath.substr(USER_PATH.length) : filePath
+        let autocomplete = replaceHomePath ? '~' + filePath.substr(USER_PATH.length) : filePath
+        if (fs.statSync(filePath).isDirectory()) {
+          autocomplete += os.platform() === 'win32' ? '\\' : '/';
+        }
         result.push({
           id: filePath,
           title: file,
