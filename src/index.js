@@ -24,7 +24,7 @@ const ignoreFile = (fileName) => (
  * @param  {String} options.term
  * @param  {Function} options.display
  */
-const filesPlugin = ({ term, actions, display }) => {
+export const fn = ({ term, actions, display }) => {
   let path = term
   let replaceHomePath = false
   if (path.match(HOME_DIR_REGEXP)) {
@@ -67,8 +67,4 @@ const filesPlugin = ({ term, actions, display }) => {
       display(result)
     })
   }
-}
-
-export default {
-  fn: filesPlugin,
 }
